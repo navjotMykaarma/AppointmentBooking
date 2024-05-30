@@ -1,0 +1,21 @@
+# PR CheckList
+
+Before submitting a pull request, please make sure the following is done:
+
+
+- [ ] Followed the coding style of the project
+- [ ] Used Lombok for boilerplate code.
+- [ ] Added [JavaDoc](https://github.com/mykaarma/kmanage-api/blob/master-v2/server/src/main/java/com/mykaarma/kmanage/common/config/ManageDBConfig.java#L20-L26) for the new methods introduced.
+- [ ] Used [mapstruct](https://github.com/mykaarma/kmanage-api/blob/master-v2/server/src/main/java/com/mykaarma/kmanage/v2/mapper/DealerAssociateMinimalDTOMapper.java) for converting of Pojo from one form to another
+- [ ] Mapstruct handling when some POJO/DTO/Enum is updated and used in mappers.
+- [ ] Used [JPA projections](https://github.com/mykaarma/kmanage-api/blob/master-v2/server/src/main/java/com/mykaarma/kmanage/v2/model/jpa/mykaarma/GetDealerProjection.java) for fetching selective data across multiple table instead of plain SQL queries.
+- [ ] [Used Constructor Injection, didn't use field injection](https://docs.spring.io/spring/docs/4.3.12.RELEASE/spring-framework-reference/htmlsingle/#beans-constructor-injection)
+- [ ] Defined DTO's and Proto's in corresponding packages
+- [ ] verified that new endpoints(if any) are visible in Swagger.
+- [ ] Is POJO structure of any [cached](https://github.com/mykaarma/kmanage-api/search?q=Cacheable&type=code) object (eg: SessionInfo) changed, if yes remember to run purge when it is deployed on QA,PROD.
+- [ ] Tested the changes in your GVM
+- [ ] verified the changes from both [Client(Profobuf)](https://github.com/mykaarma/kmanage-api/blob/master-v2/client/src/main/java/com/mykaarma/kmanage/client/KmanageClientTests.java) and Swagger(Json)
+- [ ] used **NO** [Magic Strings]([url](https://en.wikipedia.org/wiki/Magic_string)) in the code
+- [ ] Add  NPE and Empty checks for all inputs to the API and data fetched from DB
+- [ ] Donot use request Attributes except for Servicesubscriber, invalidDataScope.
+- [ ] If there is any changes in requestDTO/responseDTO, make sure that PR review is done properly. And if there is any **backward incompatible changes**, find out callers of the API and make sure it is handled everywhere.
