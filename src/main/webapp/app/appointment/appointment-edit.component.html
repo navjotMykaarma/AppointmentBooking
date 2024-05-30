@@ -1,0 +1,16 @@
+<div class="flex flex-wrap mb-6">
+    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@appointment.edit.headline">Edit Appointment</h1>
+    <div>
+        <a routerLink="/appointments" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded px-5 py-2" i18n="@@appointment.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@appointment.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="userId" rowType="number" i18n-label="@@appointment.userId.label" label="User Id" />
+    <app-input-row [group]="editForm" field="carId" rowType="number" i18n-label="@@appointment.carId.label" label="Car Id" />
+    <app-input-row [group]="editForm" field="appointmentDateTime" i18n-label="@@appointment.appointmentDateTime.label" label="Appointment Date Time" />
+    <app-input-row [group]="editForm" field="bookingStatus" rowType="radio" [options]="{'BOOKED': 'BOOKED', 'CONFIRMED': 'CONFIRMED', 'COMPLETED': 'COMPLETED'}" i18n-label="@@appointment.bookingStatus.label" label="Booking Status" />
+    <app-input-row [group]="editForm" field="notes" rowType="textarea" i18n-label="@@appointment.notes.label" label="Notes" />
+    <app-input-row [group]="editForm" field="serviceType" rowType="select" [options]="{'TYRES': 'TYRES', 'ENGINE': 'ENGINE', 'DOOR': 'DOOR', 'BODY': 'BODY', 'MISC': 'MISC'}" i18n-label="@@appointment.serviceType.label" label="Service Type" />
+    <input type="submit" i18n-value="@@appointment.edit.headline" value="Edit Appointment" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+</form>
