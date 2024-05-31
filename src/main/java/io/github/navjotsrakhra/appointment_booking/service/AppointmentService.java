@@ -3,7 +3,6 @@ package io.github.navjotsrakhra.appointment_booking.service;
 import io.github.navjotsrakhra.appointment_booking.dao.AppointmentDao;
 import io.github.navjotsrakhra.appointment_booking.domain.Appointment;
 import io.github.navjotsrakhra.appointment_booking.mapper.AppointmentMapper;
-import io.github.navjotsrakhra.appointment_booking.model.AppointmentDTO;
 import io.github.navjotsrakhra.appointment_booking.model.request.AppointmentRequestDTO;
 import io.github.navjotsrakhra.appointment_booking.model.response.AppointmentResponseDTO;
 import io.github.navjotsrakhra.appointment_booking.repos.AppointmentRepository;
@@ -52,18 +51,6 @@ public class AppointmentService {
 
   public void delete(final Long id) {
     appointmentDao.deleteById(id);
-  }
-
-  private AppointmentDTO mapToDTO(final Appointment appointment,
-                                  final AppointmentDTO appointmentDTO) {
-    appointmentDTO.setId(appointment.getId());
-    appointmentDTO.setUserId(appointment.getUserId());
-    appointmentDTO.setCarId(appointment.getCarId());
-    appointmentDTO.setAppointmentDateTime(appointment.getAppointmentDateTime());
-    appointmentDTO.setBookingStatus(appointment.getBookingStatus());
-    appointmentDTO.setNotes(appointment.getNotes());
-    appointmentDTO.setServiceType(appointment.getCarServiceType());
-    return appointmentDTO;
   }
 
   private void mapToEntity(final @Valid AppointmentRequestDTO appointmentRequestDTO,
