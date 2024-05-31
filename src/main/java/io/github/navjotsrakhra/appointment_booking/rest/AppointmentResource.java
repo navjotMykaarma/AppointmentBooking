@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 
 @RestController
 @RequestMapping(value = "/api/appointments", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -38,8 +40,8 @@ public class AppointmentResource {
   @PostMapping
   @ApiResponse(responseCode = "201")
   public ResponseEntity<Long> createAppointment(
-    @RequestBody @Valid final AppointmentRequestDTO appointmentRequestDTO) {
-    final Long createdId = appointmentService.create(appointmentRequestDTO);
+    @RequestBody @Valid final AppointmentRequestDTO appointmentRequestDTO, Principal principal) {
+    final Long createdId = appointmentService.create(principal.getName(), appointmentRequestDTO);
     return new ResponseEntity<>(createdId, HttpStatus.CREATED);
   }
 
