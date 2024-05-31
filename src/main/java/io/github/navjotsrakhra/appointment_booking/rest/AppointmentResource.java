@@ -5,6 +5,8 @@ import io.github.navjotsrakhra.appointment_booking.model.response.AppointmentRes
 import io.github.navjotsrakhra.appointment_booking.service.AppointmentService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,6 +29,7 @@ public class AppointmentResource {
     this.appointmentService = appointmentService;
   }
 
+  @Cacheable(value = "appointmentCache")
   @GetMapping
   public ResponseEntity<Page<AppointmentResponseDTO>> getAllAppointments(@PageableDefault(size = 15, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
     return ResponseEntity.ok(appointmentService.findAll(pageable));
@@ -39,6 +42,7 @@ public class AppointmentResource {
 
   @PostMapping
   @ApiResponse(responseCode = "201")
+  @CacheEvict(value = "appointmentCache")
   public ResponseEntity<Long> createAppointment(
     @RequestBody @Valid final AppointmentRequestDTO appointmentRequestDTO, Principal principal) {
     final Long createdId = appointmentService.create(principal.getName(), appointmentRequestDTO);
@@ -46,6 +50,7 @@ public class AppointmentResource {
   }
 
   @PutMapping("/{id}")
+  @CacheEvict(value = "appointmentCache")
   public ResponseEntity<Long> updateAppointment(@PathVariable(name = "id") final Long id,
                                                 @RequestBody @Valid final AppointmentRequestDTO appointmentRequestDTO) {
     appointmentService.update(id, appointmentRequestDTO);
@@ -53,6 +58,7 @@ public class AppointmentResource {
   }
 
   @DeleteMapping("/{id}")
+  @CacheEvict(value = "appointmentCache")
   @ApiResponse(responseCode = "204")
   public ResponseEntity<Void> deleteAppointment(@PathVariable(name = "id") final Long id) {
     appointmentService.delete(id);
