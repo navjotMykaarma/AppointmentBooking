@@ -40,4 +40,8 @@ public class CarDao implements Dao<Car> {
   public List<Car> findAll() {
     return repository.findAll();
   }
+
+  public void deleteById(Long id) {
+    repository.deleteById(id);
+  }
 }
