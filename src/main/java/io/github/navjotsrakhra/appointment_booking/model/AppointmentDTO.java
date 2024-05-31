@@ -1,6 +1,5 @@
 package io.github.navjotsrakhra.appointment_booking.model;
 
-import io.github.navjotsrakhra.appointment_booking.util.validation.annotation.AppointmentAppointmentDateTimeUnique;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.OffsetDateTime;
@@ -11,13 +10,11 @@ public class AppointmentDTO {
   private Long id;
 
   @NotNull
-  @AppointmentUserIdUnique
   private Long userId;
 
   private Long carId;
 
   @NotNull
-  @AppointmentAppointmentDateTimeUnique
   private OffsetDateTime appointmentDateTime;
 
   @NotNull
