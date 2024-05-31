@@ -1,7 +1,7 @@
 package io.github.navjotsrakhra.appointment_booking.model;
 
 
-public enum Service {
+public enum CarService {
 
     TYRES,
     ENGINE,
