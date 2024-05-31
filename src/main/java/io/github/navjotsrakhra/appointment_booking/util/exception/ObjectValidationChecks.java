@@ -1,4 +1,4 @@
-package io.github.navjotsrakhra.appointment_booking.util;
+package io.github.navjotsrakhra.appointment_booking.util.exception;
 
 import java.util.Objects;
 

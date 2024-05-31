@@ -1,43 +1,48 @@
 <div class="flex flex-wrap mb-6">
-    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@appointment.list.headline">Appointments</h1>
-    <div>
-        <a routerLink="/appointments/add" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2" i18n="@@appointment.list.createNew">Create new Appointment</a>
-    </div>
+  <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@appointment.list.headline">Appointments</h1>
+  <div>
+    <a class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2"
+       i18n="@@appointment.list.createNew"
+       routerLink="/appointments/add">Create new Appointment</a>
+  </div>
 </div>
 @if (!appointments || appointments.length === 0) {
-<div i18n="@@appointment.list.empty">No Appointments could be found.</div>
+  <div i18n="@@appointment.list.empty">No Appointments could be found.</div>
 } @else {
-<div class="overflow-x-auto">
+  <div class="overflow-x-auto">
     <table class="w-full">
-        <thead>
-            <tr>
-                <th scope="col" class="text-left p-2" i18n="@@appointment.id.label">Id</th>
-                <th scope="col" class="text-left p-2" i18n="@@appointment.userId.label">User Id</th>
-                <th scope="col" class="text-left p-2" i18n="@@appointment.carId.label">Car Id</th>
-                <th scope="col" class="text-left p-2" i18n="@@appointment.appointmentDateTime.label">Appointment Date Time</th>
-                <th scope="col" class="text-left p-2" i18n="@@appointment.bookingStatus.label">Booking Status</th>
-                <th scope="col" class="text-left p-2" i18n="@@appointment.serviceType.label">Service Type</th>
-                <th><!-- --></th>
-            </tr>
-        </thead>
-        <tbody class="border-t-2 border-black">
-            @for (appointment of appointments; track appointment.id) {
-            <tr class="odd:bg-gray-100">
-                <td class="p-2">{{ appointment.id }}</td>
-                <td class="p-2">{{ appointment.userId }}</td>
-                <td class="p-2">{{ appointment.carId }}</td>
-                <td class="p-2">{{ appointment.appointmentDateTime }}</td>
-                <td class="p-2">{{ appointment.bookingStatus }}</td>
-                <td class="p-2">{{ appointment.serviceType }}</td>
-                <td class="p-2">
-                    <div class="float-right whitespace-nowrap">
-                        <a [routerLink]="['/appointments/edit', appointment.id]" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm" i18n="@@appointment.list.edit">Edit</a>
-                        <button type="button" (click)="confirmDelete(appointment.id!)" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm" i18n="@@appointment.list.delete">Delete</button>
-                    </div>
-                </td>
-            </tr>
-            }
-        </tbody>
+      <thead>
+      <tr>
+        <th scope="col" class="text-left p-2" i18n="@@appointment.id.label">Id</th>
+        <th scope="col" class="text-left p-2" i18n="@@appointment.carId.label">Car Id</th>
+        <th scope="col" class="text-left p-2" i18n="@@appointment.appointmentDateTime.label">Appointment Date Time</th>
+        <th scope="col" class="text-left p-2" i18n="@@appointment.bookingStatus.label">Booking Status</th>
+        <th scope="col" class="text-left p-2" i18n="@@appointment.serviceType.label">Service Type</th>
+        <th><!-- --></th>
+      </tr>
+      </thead>
+      <tbody class="border-t-2 border-black">
+        @for (appointment of appointments; track appointment.id) {
+          <tr class="odd:bg-gray-100">
+            <td class="p-2">{{ appointment.id }}</td>
+            <td class="p-2">{{ appointment.carId }}</td>
+            <td class="p-2">{{ appointment.appointmentDateTime | date: 'short' }}</td>
+            <td class="p-2">{{ appointment.bookingCarServiceStatus }}</td>
+            <td class="p-2">{{ appointment.carServiceType }}</td>
+            <td class="p-2">
+              <div class="float-right whitespace-nowrap">
+                <a [routerLink]="['/appointments/edit', appointment.id]"
+                   class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm"
+                   i18n="@@appointment.list.edit">Edit</a>
+                <button type="button" (click)="confirmDelete(appointment.id!)"
+                        class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm"
+                        i18n="@@appointment.list.delete">Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
-</div>
+  </div>
 }

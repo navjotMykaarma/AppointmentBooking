@@ -44,5 +44,4 @@ public class UserAccountDao implements Dao<UserAccount> {
   public Optional<UserAccount> findByUsername(String username) {
     return userAccountRepository.findByUsername(username);
   }
-
 }

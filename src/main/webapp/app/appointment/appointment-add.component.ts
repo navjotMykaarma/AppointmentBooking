@@ -1,12 +1,12 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { InputRowComponent } from 'app/common/input-row/input-row.component';
-import { AppointmentService } from 'app/appointment/appointment.service';
-import { AppointmentDTO } from 'app/appointment/appointment.model';
-import { ErrorHandler } from 'app/common/error-handler.injectable';
-import { validOffsetDateTime } from 'app/common/utils';
+import {Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {InputRowComponent} from 'app/common/input-row/input-row.component';
+import {AppointmentService} from 'app/appointment/appointment.service';
+import {AppointmentRequestDTO} from 'app/appointment/appointment.model';
+import {ErrorHandler} from 'app/common/error-handler.injectable';
+import {validOffsetDateTime} from 'app/common/utils';
 
 
 @Component({
@@ -22,13 +22,11 @@ export class AppointmentAddComponent {
   errorHandler = inject(ErrorHandler);
 
   addForm = new FormGroup({
-    userId: new FormControl(null, [Validators.required]),
     carId: new FormControl(null),
     appointmentDateTime: new FormControl(null, [Validators.required, validOffsetDateTime]),
-    bookingStatus: new FormControl(null, [Validators.required]),
     notes: new FormControl(null),
-    serviceType: new FormControl(null, [Validators.required])
-  }, { updateOn: 'submit' });
+    carServiceType: new FormControl(null, [Validators.required])
+  }, {updateOn: 'submit'});
 
   getMessage(key: string, details?: any) {
     const messages: Record<string, string> = {
@@ -45,16 +43,16 @@ export class AppointmentAddComponent {
     if (!this.addForm.valid) {
       return;
     }
-    const data = new AppointmentDTO(this.addForm.value);
+    const data = new AppointmentRequestDTO(this.addForm.value);
     this.appointmentService.createAppointment(data)
-        .subscribe({
-          next: () => this.router.navigate(['/appointments'], {
-            state: {
-              msgSuccess: this.getMessage('created')
-            }
-          }),
-          error: (error) => this.errorHandler.handleServerError(error.error, this.addForm, this.getMessage)
-        });
+      .subscribe({
+        next: () => this.router.navigate(['/appointments'], {
+          state: {
+            msgSuccess: this.getMessage('created')
+          }
+        }),
+        error: (error) => this.errorHandler.handleServerError(error.error, this.addForm, this.getMessage)
+      });
   }
 
 }
