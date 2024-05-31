@@ -24,7 +24,7 @@ public class UserAccount implements UserDetails {
   @Id
   @Column(nullable = false, updatable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Long id; // TODO add first name last name
 
   @Column(nullable = false, unique = true)
   private String username;

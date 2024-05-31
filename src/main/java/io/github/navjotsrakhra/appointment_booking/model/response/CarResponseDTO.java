@@ -1,6 +1,7 @@
-package io.github.navjotsrakhra.appointment_booking.model.request;
+package io.github.navjotsrakhra.appointment_booking.model.response;
 
-public class CarRequestDTO {
+public class CarResponseDTO {
+  private Long id;
   private String vin;
   private String make;
   private String model;
