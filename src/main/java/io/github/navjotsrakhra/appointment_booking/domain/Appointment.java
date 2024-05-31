@@ -1,7 +1,7 @@
 package io.github.navjotsrakhra.appointment_booking.domain;
 
-import io.github.navjotsrakhra.appointment_booking.model.Service;
-import io.github.navjotsrakhra.appointment_booking.model.Status;
+import io.github.navjotsrakhra.appointment_booking.model.CarService;
+import io.github.navjotsrakhra.appointment_booking.model.CarServiceStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -38,14 +38,14 @@ public class Appointment {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Status bookingStatus;
+    private CarServiceStatus bookingCarServiceStatus;
 
     @Column(columnDefinition = "longtext")
     private String notes;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Service serviceType; // TODO Convert to list
+    private CarService carServiceType; // TODO Convert to list
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -87,12 +87,12 @@ public class Appointment {
         this.appointmentDateTime = appointmentDateTime;
     }
 
-    public Status getBookingStatus() {
-        return bookingStatus;
+    public CarServiceStatus getBookingStatus() {
+        return bookingCarServiceStatus;
     }
 
-    public void setBookingStatus(final Status bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setBookingStatus(final CarServiceStatus bookingCarServiceStatus) {
+        this.bookingCarServiceStatus = bookingCarServiceStatus;
     }
 
     public String getNotes() {
@@ -103,12 +103,12 @@ public class Appointment {
         this.notes = notes;
     }
 
-    public Service getServiceType() {
-        return serviceType;
+    public CarService getServiceType() {
+        return carServiceType;
     }
 
-    public void setServiceType(final Service serviceType) {
-        this.serviceType = serviceType;
+    public void setServiceType(final CarService carServiceType) {
+        this.carServiceType = carServiceType;
     }
 
     public OffsetDateTime getDateCreated() {

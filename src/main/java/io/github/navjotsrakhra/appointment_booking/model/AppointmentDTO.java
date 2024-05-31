@@ -19,12 +19,12 @@ public class AppointmentDTO {
     private OffsetDateTime appointmentDateTime;
 
     @NotNull
-    private Status bookingStatus;
+    private CarServiceStatus bookingCarServiceStatus;
 
     private String notes;
 
     @NotNull
-    private Service serviceType;
+    private CarService carServiceType;
 
     public Long getId() {
         return id;
@@ -58,12 +58,12 @@ public class AppointmentDTO {
         this.appointmentDateTime = appointmentDateTime;
     }
 
-    public Status getBookingStatus() {
-        return bookingStatus;
+    public CarServiceStatus getBookingStatus() {
+        return bookingCarServiceStatus;
     }
 
-    public void setBookingStatus(final Status bookingStatus) {
-        this.bookingStatus = bookingStatus;
+    public void setBookingStatus(final CarServiceStatus bookingCarServiceStatus) {
+        this.bookingCarServiceStatus = bookingCarServiceStatus;
     }
 
     public String getNotes() {
@@ -74,12 +74,12 @@ public class AppointmentDTO {
         this.notes = notes;
     }
 
-    public Service getServiceType() {
-        return serviceType;
+    public CarService getServiceType() {
+        return carServiceType;
     }
 
-    public void setServiceType(final Service serviceType) {
-        this.serviceType = serviceType;
+    public void setServiceType(final CarService carServiceType) {
+        this.carServiceType = carServiceType;
     }
 
 }
