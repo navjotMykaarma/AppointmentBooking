@@ -3,6 +3,7 @@ package io.github.navjotsrakhra.appointment_booking.service;
 import io.github.navjotsrakhra.appointment_booking.dao.AppointmentDao;
 import io.github.navjotsrakhra.appointment_booking.domain.Appointment;
 import io.github.navjotsrakhra.appointment_booking.mapper.AppointmentMapper;
+import io.github.navjotsrakhra.appointment_booking.model.CarServiceStatus;
 import io.github.navjotsrakhra.appointment_booking.model.request.AppointmentRequestDTO;
 import io.github.navjotsrakhra.appointment_booking.model.response.AppointmentResponseDTO;
 import io.github.navjotsrakhra.appointment_booking.repos.AppointmentRepository;
@@ -39,6 +40,7 @@ public class AppointmentService {
 
   public Long create(final @Valid AppointmentRequestDTO appointmentDTO) {
     final Appointment appointment = appointmentMapper.appointmentRequestDTOToAppointment(appointmentDTO);
+    appointment.setBookingStatus(CarServiceStatus.CONFIRMED);
     return appointmentDao.save(appointment).getId();
   }
 

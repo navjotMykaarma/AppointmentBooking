@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class AppointmentResource {
   }
 
   @GetMapping
-  public ResponseEntity<Page<AppointmentResponseDTO>> getAllAppointments(Pageable pageable) { // TODO Set default paging values
+  public ResponseEntity<Page<AppointmentResponseDTO>> getAllAppointments(@PageableDefault(size = 15, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
     return ResponseEntity.ok(appointmentService.findAll(pageable));
   }
 

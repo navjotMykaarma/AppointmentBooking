@@ -8,6 +8,18 @@ public class CarResponseDTO {
   private String licensePlateNumber;
   private Long userId;
 
+  public CarResponseDTO(Long id, String vin, String make, String model, String licensePlateNumber, Long userId) {
+    this.id = id;
+    this.vin = vin;
+    this.make = make;
+    this.model = model;
+    this.licensePlateNumber = licensePlateNumber;
+    this.userId = userId;
+  }
+
+  public CarResponseDTO() {
+  }
+
   public Long getId() {
     return id;
   }

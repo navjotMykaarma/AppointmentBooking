@@ -23,8 +23,17 @@ public class SecurityConfig {
       )
       .authorizeHttpRequests(
         authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-          .anyRequest()
-          .permitAll()
+          .requestMatchers("/api/**").authenticated()
+          .anyRequest().permitAll()
+      )
+      .formLogin(
+        httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+          .loginPage("/login")
+          .loginProcessingUrl("/login")
+      )
+      .logout(
+        httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
+          .deleteCookies("JSESSIONID")
       )
       .build();
   }

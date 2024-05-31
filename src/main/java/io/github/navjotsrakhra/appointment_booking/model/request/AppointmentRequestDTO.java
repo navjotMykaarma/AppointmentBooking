@@ -10,6 +10,16 @@ public class AppointmentRequestDTO {
   private String notes;
   private CarService carServiceType;
 
+  public AppointmentRequestDTO(Long carId, OffsetDateTime appointmentDateTime, String notes, CarService carServiceType) {
+    this.carId = carId;
+    this.appointmentDateTime = appointmentDateTime;
+    this.notes = notes;
+    this.carServiceType = carServiceType;
+  }
+
+  public AppointmentRequestDTO() {
+  }
+
   public Long getCarId() {
     return carId;
   }

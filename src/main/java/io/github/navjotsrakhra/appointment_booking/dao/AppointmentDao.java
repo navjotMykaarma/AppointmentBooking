@@ -4,10 +4,12 @@ import io.github.navjotsrakhra.appointment_booking.domain.Appointment;
 import io.github.navjotsrakhra.appointment_booking.repos.AppointmentRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class AppointmentDao implements Dao<Appointment>, PagingDao<Appointment> {
 
   private final AppointmentRepository repository;

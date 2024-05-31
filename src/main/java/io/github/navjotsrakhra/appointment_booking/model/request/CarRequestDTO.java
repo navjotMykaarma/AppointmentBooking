@@ -7,6 +7,17 @@ public class CarRequestDTO {
   private String licensePlateNumber;
   private Long userId;
 
+  public CarRequestDTO(String vin, String make, String model, String licensePlateNumber, Long userId) {
+    this.vin = vin;
+    this.make = make;
+    this.model = model;
+    this.licensePlateNumber = licensePlateNumber;
+    this.userId = userId;
+  }
+
+  public CarRequestDTO() {
+  }
+
   public String getVin() {
     return vin;
   }

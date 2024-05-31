@@ -1,1 +1,14 @@
-<p>login-page works!</p>
+<div class="flex flex-wrap mb-6">
+  <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@appointment.add.headline">Login</h1>
+
+</div>
+<form (ngSubmit)="handleSubmit()" [formGroup]="addForm">
+  <app-input-row [group]="addForm" field="username" i18n-label="@@username" label="Username"
+                 rowType="text"/>
+  <app-input-row [group]="addForm" field="password" i18n-label="@@password" label="Password"
+                 rowType="password"/>
+  <input
+    class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6"
+    i18n-value="@@appointment.add.headline" type="submit"
+    value="Login"/>
+</form>

@@ -80,7 +80,7 @@ public class UserAccount implements UserDetails {
 
   @Override
   public boolean isEnabled() {
-    return UserDetails.super.isEnabled();
+    return isAccountNonExpired() && isAccountNonLocked();
   }
 
   @Override

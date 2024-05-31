@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AppointmentListComponent } from './appointment/appointment-list.component';
-import { AppointmentAddComponent } from './appointment/appointment-add.component';
-import { AppointmentEditComponent } from './appointment/appointment-edit.component';
-import { ErrorComponent } from './error/error.component';
+import {Routes} from '@angular/router';
+import {HomeComponent} from './home/home.component';
+import {AppointmentListComponent} from './appointment/appointment-list.component';
+import {AppointmentAddComponent} from './appointment/appointment-add.component';
+import {AppointmentEditComponent} from './appointment/appointment-edit.component';
+import {ErrorComponent} from './error/error.component';
+import {LoginPageComponent} from "./login-page/login-page.component";
 
 
 export const routes: Routes = [
@@ -11,6 +12,11 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: $localize`:@@home.index.headline:Welcome to your new app!`
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    title: $localize`:@@home.login: Login User`
   },
   {
     path: 'appointments',
