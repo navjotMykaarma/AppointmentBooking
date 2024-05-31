@@ -1,18 +1,8 @@
 package io.github.navjotsrakhra.appointment_booking.domain;
 
 import io.github.navjotsrakhra.appointment_booking.model.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-import java.time.OffsetDateTime;
-import java.util.Collection;
-import java.util.List;
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,6 +10,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -52,6 +46,7 @@ public class UserAccount implements UserDetails {
   private List<Role> roles;
 
   @Column(nullable = false)
+  @Email
   private String email;
 
   @Column(nullable = false)
@@ -70,17 +65,17 @@ public class UserAccount implements UserDetails {
 
   @Override
   public boolean isAccountNonExpired() {
-    return accountExpired;
+    return !accountExpired;
   }
 
   @Override
   public boolean isAccountNonLocked() {
-    return accountLocked;
+    return !accountLocked;
   }
 
   @Override
   public boolean isCredentialsNonExpired() {
-    return credentialsExpired;
+    return !credentialsExpired;
   }
 
   @Override

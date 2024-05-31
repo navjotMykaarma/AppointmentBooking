@@ -2,13 +2,15 @@ package io.github.navjotsrakhra.appointment_booking.dao;
 
 import io.github.navjotsrakhra.appointment_booking.domain.UserAccount;
 import io.github.navjotsrakhra.appointment_booking.repos.UserAccountRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UserAccountDao implements Dao<UserAccount> {
+public class UserAccountDao implements Dao<UserAccount>, PagingDao<UserAccount> {
   private final UserAccountRepository userAccountRepository;
 
   public UserAccountDao(UserAccountRepository userAccountRepository) {
@@ -45,4 +47,8 @@ public class UserAccountDao implements Dao<UserAccount> {
     return userAccountRepository.findByUsername(username);
   }
 
+  @Override
+  public Page<UserAccount> findAll(Pageable pageable) {
+    return this.userAccountRepository.findAll(pageable);
+  }
 }
