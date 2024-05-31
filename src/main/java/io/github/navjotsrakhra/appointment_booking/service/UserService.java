@@ -7,7 +7,6 @@ import io.github.navjotsrakhra.appointment_booking.model.Role;
 import io.github.navjotsrakhra.appointment_booking.model.request.PasswordChangeDTO;
 import io.github.navjotsrakhra.appointment_booking.model.request.UserAccountRequestDTO;
 import io.github.navjotsrakhra.appointment_booking.repos.UserAccountRepository;
-import io.github.navjotsrakhra.appointment_booking.util.ObjectValidationChecks;
 import io.github.navjotsrakhra.appointment_booking.util.UsernameAlreadyTakenException;
 import io.github.navjotsrakhra.appointment_booking.util.WrongPasswordException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 @Service
 public class UserService {
@@ -65,8 +63,7 @@ public class UserService {
     Objects.requireNonNull(passwordChangeDTO);
 
     Optional<UserAccount> user = userAccountDao.findByUsername(username);
-    user.orElseThrow(() -> new UsernameNotFoundException("Username not found.")); // Shouldn't occur ever. Only if user deletes account and somehow stays logged in.
-    UserAccount userAccount = user.get();
+    UserAccount userAccount = user.orElseThrow(() -> new UsernameNotFoundException("Username not found.")); // Shouldn't occur ever. Only if user deletes account and somehow stays logged in.
 
     String currentEncodedPassword = passwordEncoder.encode(passwordChangeDTO.getCurrentPassword());
 
